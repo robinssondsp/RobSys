@@ -1,0 +1,114 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+}
+
+/* Pantalla completa */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Fondo base */
+body {
+    background: linear-gradient(to top,
+        #001f3f,
+        #00509e,
+        #3fa9f5,
+        #87cefa
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Capa holograma animada */
+.hologram-bg {
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(120deg, rgba(0,255,255,0.08), rgba(0,0,255,0.05)),
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0,255,255,0.08),
+            rgba(0,255,255,0.08) 2px,
+            transparent 2px,
+            transparent 6px
+        );
+    animation: hologramMove 8s linear infinite;
+    z-index: 0;
+}
+
+/* Animación holograma */
+@keyframes hologramMove {
+    from {
+        background-position: 0 0, 0 0;
+    }
+    to {
+        background-position: 400px 400px, 0 200px;
+    }
+}
+
+/* Contenedor principal */
+#container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Marco luminoso */
+.robot-frame {
+    position: relative;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+
+    box-shadow:
+        0 0 15px rgba(0,180,255,0.8),
+        0 0 30px rgba(0,180,255,0.6),
+        0 0 60px rgba(0,180,255,0.4);
+}
+
+/* Robot */
+model-viewer {
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin: auto;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Reflejo espejo */
+.robot-frame::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    transform: scaleY(-1);
+    opacity: 0.25;
+    filter: blur(6px);
+
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    model-viewer {
+        width: 280px;
+        height: 280px;
+    }
+}
