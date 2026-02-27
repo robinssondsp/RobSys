@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-jmpa_ob+%m4-!n&&2_wm73d$h9v#6%h+z9&t@@h-6x9&a4jl#+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
