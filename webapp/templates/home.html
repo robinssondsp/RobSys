@@ -24,33 +24,40 @@
 <div id="app">
 
     <div class="video-box fade-up">
-        <video src="{% static 'models/video.mp4' %}" 
-               controls 
-               muted 
-               loop>
-        </video>
+        <video src="{% static 'models/video.mp4' %}" controls muted loop></video>
     </div>
 
     <div class="robot-box fade-up-delay">
         <model-viewer 
             src="{% static 'robot.glb' %}"
             camera-controls
-            disable-zoom
             auto-rotate
-            auto-rotate-delay="0"
-            rotation-per-second="20deg"
-            exposure="1.2"
+            exposure="1.1"
             shadow-intensity="0.8"
-            shadow-softness="1"
             environment-image="neutral"
             interaction-prompt="none"
-            loading="eager"
-            reveal="auto"
+
+            camera-orbit="0deg 75deg auto"
+            camera-target="0m 0.5m 0m"
+            min-field-of-view="20deg"
+            max-field-of-view="35deg"
+            field-of-view="28deg"
+
+            bounds="tight"
             alt="robot">
         </model-viewer>
     </div>
 
 </div>
+
+<script>
+function setRealViewportHeight() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+setRealViewportHeight();
+window.addEventListener('resize', setRealViewportHeight);
+</script>
 
 </body>
 </html>

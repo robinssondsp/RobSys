@@ -1,20 +1,27 @@
+/* ========================= */
 /* RESET */
+/* ========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ========================= */
 /* BASE */
+/* ========================= */
 html, body {
     width: 100%;
     min-height: 100vh;
-    overflow-x: hidden;
     background: linear-gradient(180deg, #001f3f 0%, #003366 50%, #00509e 100%);
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
+/* ========================= */
 /* LOGO */
+/* ========================= */
 .logo {
     position: fixed;
     top: 15px;
@@ -23,7 +30,9 @@ html, body {
     z-index: 20;
 }
 
+/* ========================= */
 /* BANNER */
+/* ========================= */
 .banner {
     width: 100%;
     margin-top: 70px;
@@ -34,11 +43,14 @@ html, body {
 .banner img {
     width: 100%;
     max-width: 1200px;
+    height: auto;
     border-radius: 14px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* CONTENEDOR */
+/* ========================= */
+/* CONTENEDOR PRINCIPAL */
+/* ========================= */
 #app {
     width: 100%;
     max-width: 1200px;
@@ -46,11 +58,13 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 60px;
-    padding: 0 20px;
+    gap: 50px;
+    padding: 0 20px 40px 20px;
 }
 
+/* ========================= */
 /* VIDEO */
+/* ========================= */
 .video-box {
     width: 100%;
     max-width: 500px;
@@ -59,12 +73,12 @@ html, body {
 video {
     width: 100%;
     border-radius: 18px;
-    box-shadow:
-        0 0 20px rgba(255,255,0,0.6),
-        0 0 40px rgba(255,255,0,0.3);
+    box-shadow: 0 0 20px rgba(255,255,0,0.5);
 }
 
+/* ========================= */
 /* ROBOT */
+/* ========================= */
 .robot-box {
     width: 100%;
     max-width: 500px;
@@ -74,7 +88,9 @@ video {
 
 model-viewer {
     width: 100%;
-    height: clamp(280px, 45vh, 480px);
+    height: clamp(240px, 32vh, 420px);
+    max-height: 420px;
+    min-height: 240px;
     border-radius: 20px;
     background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent);
     transition: transform 0.6s ease;
@@ -83,7 +99,6 @@ model-viewer {
 /* ========================= */
 /* ANIMACIONES SUAVES */
 /* ========================= */
-
 .fade-in {
     opacity: 0;
     animation: fadeIn 1.2s ease forwards;
@@ -91,21 +106,19 @@ model-viewer {
 
 .fade-up {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
     animation: fadeUp 1s ease forwards;
 }
 
 .fade-up-delay {
     opacity: 0;
-    transform: translateY(60px);
+    transform: translateY(40px);
     animation: fadeUp 1.2s ease forwards;
     animation-delay: 0.3s;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+    to { opacity: 1; }
 }
 
 @keyframes fadeUp {
@@ -115,7 +128,9 @@ model-viewer {
     }
 }
 
-/* SCROLLBAR NEON */
+/* ========================= */
+/* SCROLLBAR */
+/* ========================= */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -130,10 +145,25 @@ model-viewer {
     box-shadow: 0 0 10px #ffff00;
 }
 
-/* RESPONSIVE TABLET */
+/* ========================= */
+/* TABLET Y DESKTOP */
+/* ========================= */
 @media (min-width: 768px) {
+
     #app {
-        flex-direction: column;
-        gap: 80px;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .video-box,
+    .robot-box {
+        width: 50%;
+        max-width: 600px;
+    }
+
+    model-viewer {
+        height: clamp(300px, 40vh, 480px);
     }
 }
