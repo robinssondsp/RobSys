@@ -15,18 +15,26 @@
 
 <body>
 
+<!-- PARTICULAS -->
+<canvas id="particles"></canvas>
+
+<!-- LOGO -->
 <img src="{% static 'Logo.png' %}" class="logo fade-in" alt="Logo">
 
+<!-- BANNER SIN MARCO -->
 <div class="banner fade-in">
     <img src="{% static 'Banner.jpg' %}" alt="Banner">
 </div>
 
+<!-- CONTENEDOR -->
 <div id="app">
 
-    <div class="video-box fade-up">
+    <!-- VIDEO CON MARCO -->
+    <div class="video-box glass fade-up">
         <video src="{% static 'models/video.mp4' %}" controls muted loop></video>
     </div>
 
+    <!-- ROBOT SIN MARCO -->
     <div class="robot-box fade-up-delay">
         <model-viewer 
             src="{% static 'robot.glb' %}"
@@ -36,14 +44,8 @@
             shadow-intensity="0.8"
             environment-image="neutral"
             interaction-prompt="none"
-
-            camera-orbit="0deg 75deg auto"
-            camera-target="0m 0.5m 0m"
-            min-field-of-view="20deg"
-            max-field-of-view="35deg"
-            field-of-view="28deg"
-
             bounds="tight"
+            field-of-view="28deg"
             alt="robot">
         </model-viewer>
     </div>
