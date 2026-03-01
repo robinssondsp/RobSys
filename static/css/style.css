@@ -28,6 +28,7 @@ html, body {
     z-index: 10;
     backdrop-filter: blur(6px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+    transition: height 0.4s cubic-bezier(.22,.61,.36,1);
 }
 
 .banner img {
@@ -35,6 +36,10 @@ html, body {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.8);
+}
+
+.banner-small {
+    height: 60px;
 }
 
 /* ========================= */
@@ -50,10 +55,11 @@ html, body {
 
 .logo {
     height: 30px;
+    width: auto;
 }
 
 /* ========================= */
-/* CONTENIDO */
+/* CONTENIDO PRINCIPAL */
 /* ========================= */
 #app {
     width: 95%;
@@ -82,24 +88,25 @@ html, body {
 }
 
 /* ========================= */
-/* RPA OVERLAY */
+/* RPA OVERLAY RESTAURADO */
 /* ========================= */
 .rpa-overlay {
     position: absolute;
     inset: 0;
+    z-index: 3;              /* IMPORTANTE */
     pointer-events: none;
-    z-index: 2;
 }
 
 /* Línea de escaneo */
 .scan-line {
     position: absolute;
+    left: 0;
     width: 100%;
     height: 2px;
     background: linear-gradient(
         to right,
         transparent,
-        rgba(0,255,255,0.8),
+        rgba(0,255,255,0.9),
         transparent
     );
     animation: scanMove 3s linear infinite;
@@ -110,7 +117,7 @@ html, body {
     100% { top: 100%; }
 }
 
-/* Nodos de datos */
+/* Nodos */
 .data-node {
     position: absolute;
     width: 6px;
@@ -130,12 +137,12 @@ html, body {
     50% { opacity: 1; transform: scale(1.2); }
 }
 
-/* Micro datos */
+/* Texto HUD */
 .micro-data {
     position: absolute;
     font-size: 11px;
     letter-spacing: 2px;
-    color: rgba(0,255,255,0.7);
+    color: rgba(0,255,255,0.8);
     text-shadow: 0 0 8px rgba(0,255,255,0.6);
 }
 
@@ -162,23 +169,57 @@ video {
     width: 100%;
     border-radius: 18px;
     position: relative;
-    z-index: 1;
+    z-index: 2;   /* debajo del overlay */
 }
 
 /* ========================= */
-/* ROBOT */
+/* ROBOT RESPONSIVE */
 /* ========================= */
 .robot-box {
+    position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 model-viewer {
     width: 100%;
-    max-width: 420px;
+    height: auto;
     aspect-ratio: 1 / 1;
+    z-index: 2;
 }
 
+/* ========================= */
+/* BASE TECNOLÓGICA */
+/* ========================= */
+.tech-base {
+    position: absolute;
+    bottom: 8%;
+    width: 60%;
+    height: 10%;
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0,180,255,0.4) 0%,
+        rgba(0,180,255,0.15) 50%,
+        transparent 70%
+    );
+    filter: blur(12px);
+    animation: basePulse 3s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes basePulse {
+    0%,100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* ========================= */
+/* RESPONSIVE DESKTOP */
+/* ========================= */
 @media (min-width: 768px) {
     #app {
         flex-direction: row;
@@ -189,5 +230,9 @@ model-viewer {
     .video-box,
     .robot-box {
         width: 50%;
+    }
+
+    .robot-box {
+        max-width: 420px;
     }
 }

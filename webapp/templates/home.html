@@ -16,30 +16,18 @@
 
 <body>
 
-<!-- ========================= -->
-<!-- BANNER -->
-<!-- ========================= -->
 <div class="banner" id="banner">
     <img src="{% static 'Banner.jpg' %}" alt="Banner">
 </div>
 
-<!-- ========================= -->
-<!-- LOGO -->
-<!-- ========================= -->
 <div class="logo-container">
     <img src="{% static 'Logo.png' %}" class="logo" alt="Logo">
 </div>
 
-<!-- ========================= -->
-<!-- CONTENIDO PRINCIPAL -->
-<!-- ========================= -->
 <div id="app">
 
-    <!-- ========================= -->
-    <!-- VIDEO + GLASS -->
-    <!-- ========================= -->
+    <!-- VIDEO -->
     <div class="video-box glass">
-
         <div class="rpa-overlay">
             <div class="scan-line"></div>
             <div class="data-node node1"></div>
@@ -63,26 +51,28 @@
             playsinline
             preload="auto">
         </video>
-
     </div>
 
-    <!-- ========================= -->
-    <!-- ROBOT 3D DEFAULT -->
-    <!-- ========================= -->
+    <!-- ROBOT -->
     <div class="robot-box">
+        <div class="tech-base"></div>
+
         <model-viewer 
             src="{% static 'robot.glb' %}"
             camera-controls
             auto-rotate
+            auto-rotate-delay="0"
+            rotation-per-second="12deg"
+            exposure="1.05"
+            shadow-intensity="0.8"
+            environment-image="neutral"
+            camera-orbit="0deg 75deg 3m"
             alt="robot">
         </model-viewer>
     </div>
 
 </div>
 
-<!-- ========================= -->
-<!-- SCRIPT SCROLL -->
-<!-- ========================= -->
 <script>
 const banner = document.getElementById("banner");
 
