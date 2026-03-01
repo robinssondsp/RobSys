@@ -8,7 +8,7 @@
 }
 
 :root {
-    --scan-speed: 3s;
+    --scan-speed: 4s;
     --accent-color: rgba(0,255,255,0.8);
 }
 
@@ -92,7 +92,9 @@ html, body {
     overflow: hidden;
 }
 
-/* ESCÁNER */
+/* ========================= */
+/* ESCÁNER VIDEO */
+/* ========================= */
 .rpa-overlay {
     position: absolute;
     inset: 0;
@@ -155,41 +157,38 @@ video {
     display: flex;
     justify-content: center;
     align-items: center;
-
     border-radius: 28px;
     overflow: hidden;
-
     background: rgba(15,25,45,0.5);
     box-shadow:
         0 25px 60px rgba(0,0,0,0.6),
         inset 0 0 40px rgba(0,180,255,0.05);
 }
 
+/* === NUEVO ESCÁNER PROFESIONAL DEL ROBOT === */
 .robot-box::before {
     content: "";
     position: absolute;
-    inset: 0;
-    border-radius: 28px;
-    padding: 1px;
-    background: conic-gradient(
-        from 0deg,
-        transparent,
-        var(--accent-color),
-        transparent 40%
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0,255,255,0.1) 40%,
+        rgba(0,255,255,0.35) 50%,
+        rgba(0,255,255,0.1) 60%,
+        transparent 100%
     );
-    animation: borderScan var(--scan-speed) linear infinite;
+    filter: blur(10px);
+    animation: robotScan var(--scan-speed) linear infinite;
     pointer-events: none;
-
-    -webkit-mask:
-        linear-gradient(#000 0 0) content-box,
-        linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
 }
 
-@keyframes borderScan {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+@keyframes robotScan {
+    0%   { transform: translateY(0%); }
+    100% { transform: translateY(200%); }
 }
 
 model-viewer {
