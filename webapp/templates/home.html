@@ -11,31 +11,51 @@
 </script>
 
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- ========================= -->
-<!-- BANNER -->
-<!-- ========================= -->
 <div class="banner" id="banner">
     <img src="{% static 'Banner.jpg' %}" alt="Banner">
 </div>
 
-<!-- ========================= -->
-<!-- LOGO FUERA DEL BANNER -->
-<!-- ========================= -->
 <div class="logo-container">
-    <img src="{% static 'Logo.png' %}" class="logo" id="logo" alt="Logo">
+    <img src="{% static 'Logo.png' %}" class="logo" alt="Logo">
 </div>
 
-<!-- ========================= -->
-<!-- CONTENIDO PRINCIPAL -->
-<!-- ========================= -->
 <div id="app">
 
     <div class="video-box glass">
-        <video src="{% static 'models/video.mp4' %}" controls muted loop></video>
+
+        <!-- RPA SCAN OVERLAY -->
+        <div class="rpa-overlay">
+
+            <div class="scan-line"></div>
+
+            <div class="data-node node1"></div>
+            <div class="data-node node2"></div>
+            <div class="data-node node3"></div>
+
+            <div class="micro-data top-left">
+                SCANEANDO VENTAS...
+            </div>
+
+            <div class="micro-data bottom-right">
+                ESTADO DE FACTURAS: VALIDANDO
+            </div>
+
+        </div>
+
+        <video 
+            src="{% static 'models/video.mp4' %}"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+        </video>
+
     </div>
 
     <div class="robot-box">
