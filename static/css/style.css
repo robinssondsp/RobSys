@@ -21,7 +21,7 @@ html, body {
 }
 
 /* ========================= */
-/* BANNER */
+/* BANNER SUPERIOR FIJO */
 /* ========================= */
 .banner {
     position: fixed;
@@ -30,7 +30,7 @@ html, body {
     width: 100%;
     height: 100px;
     overflow: hidden;
-    z-index: 10;
+    z-index: 100;
 }
 
 .banner img {
@@ -40,27 +40,49 @@ html, body {
 }
 
 /* ========================= */
-/* LOGO */
+/* VIDEO NOTICIAS */
+/* ========================= */
+.banner-noticias {
+    width: 100%;
+    height: 500px;
+    margin-top: 100px; /* espacio para banner fijo */
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-noticias video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================= */
+/* LOGO PROFESIONAL */
 /* ========================= */
 .logo-container {
     position: fixed;
-    top: 50px;
-    left: 30px;
-    transform: translateY(-50%);
-    z-index: 1000;
+    top: 0;
+    left: 40px;
+    height: 100px; /* mismo alto que banner */
+    display: flex;
+    align-items: center; /* centrado vertical real */
+    z-index: 200;
 }
 
 .logo {
-    height: 30px;
+    height: 55%;
+    max-height: 60px;
+    width: auto;
 }
 
 /* ========================= */
-/* CONTENIDO */
+/* CONTENIDO PRINCIPAL */
 /* ========================= */
 #app {
     width: 95%;
     max-width: 1200px;
-    margin: 140px auto 60px auto;
+    margin: 80px auto 60px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,7 +90,7 @@ html, body {
 }
 
 /* ========================= */
-/* VIDEO CONTAINER */
+/* VIDEO RPA */
 /* ========================= */
 .video-box {
     width: 100%;
@@ -76,7 +98,6 @@ html, body {
     position: relative;
 }
 
-/* GLASS solo contenedor visual */
 .glass {
     position: relative;
     border-radius: 24px;
@@ -86,7 +107,6 @@ html, body {
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* VIDEO PROPORCIONAL */
 video {
     width: 100%;
     height: auto;
@@ -94,7 +114,7 @@ video {
 }
 
 /* ========================= */
-/* OVERLAY ESCÁNER */
+/* ESCÁNER VIDEO */
 /* ========================= */
 .rpa-overlay {
     position: absolute;
@@ -103,7 +123,6 @@ video {
     pointer-events: none;
 }
 
-/* Línea vertical */
 .scan-line {
     position: absolute;
     left: 0;
@@ -123,7 +142,6 @@ video {
     100% { top: 100%; }
 }
 
-/* Textos */
 .micro-data {
     position: absolute;
     font-size: 11px;
@@ -147,41 +165,18 @@ video {
 /* ROBOT */
 /* ========================= */
 .robot-box {
+    position: relative;
     width: 100%;
-    max-width: 420px;
     aspect-ratio: 1 / 1;
     border-radius: 28px;
     overflow: hidden;
-    position: relative;
     background: rgba(15,25,45,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-model-viewer {
-    width: 100%;
-    height: 100%;
-}
-
-/* ========================= */
-/* RESPONSIVE DESKTOP */
-/* ========================= */
-@media (min-width: 768px) {
-    #app {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 60px;
-    }
-
-    .video-box,
-    .robot-box {
-        width: 50%;
-    }
-}
-/* ========================= */
-/* ESCÁNER ROBOT RESTAURADO */
-/* ========================= */
-
-/* Línea de escaneo vertical */
+/* Escáner vertical robot */
 .robot-box::before {
     content: "";
     position: absolute;
@@ -189,44 +184,82 @@ model-viewer {
     left: 0;
     width: 100%;
     height: 100%;
-
     background: linear-gradient(
         to bottom,
         transparent 0%,
-        rgba(0,255,255,0.1) 40%,
+        rgba(0,255,255,0.15) 40%,
         rgba(0,255,255,0.45) 50%,
-        rgba(0,255,255,0.1) 60%,
+        rgba(0,255,255,0.15) 60%,
         transparent 100%
     );
-
     mix-blend-mode: screen;
-    filter: blur(10px);
+    filter: blur(6px);
     animation: robotScan var(--scan-speed) linear infinite;
     pointer-events: none;
 }
 
 @keyframes robotScan {
-    0%   { transform: translateY(0%); }
+    0% { transform: translateY(0%); }
     100% { transform: translateY(200%); }
 }
 
-/* Partículas microscópicas */
+/* Partículas */
 .robot-box::after {
     content: "";
     position: absolute;
     inset: 0;
-
-    background-image:
-        radial-gradient(circle, rgba(0,255,255,0.35) 1px, transparent 1px);
-
+    background-image: radial-gradient(circle, rgba(0,255,255,0.35) 1px, transparent 1px);
     background-size: 4px 4px;
     opacity: 0.05;
-
     animation: particlesMove 10s linear infinite;
     pointer-events: none;
 }
 
 @keyframes particlesMove {
     from { transform: translateY(0); }
-    to   { transform: translateY(50px); }
+    to { transform: translateY(50px); }
+}
+
+model-viewer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+@media (max-width: 768px) {
+
+    .banner-noticias {
+        height: 280px;
+    }
+
+    .logo-container {
+        left: 20px;
+    }
+
+    .logo {
+        height: 50%;
+    }
+
+    #app {
+        margin-top: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #app {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .video-box,
+    .robot-box {
+        width: 48%;
+    }
 }

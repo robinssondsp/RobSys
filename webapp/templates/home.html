@@ -16,14 +16,37 @@
 
 <body>
 
+<!-- ========================= -->
+<!-- BANNER SUPERIOR -->
+<!-- ========================= -->
 <div class="banner" id="banner">
     <img src="{% static 'Banner.jpg' %}" alt="Banner">
 </div>
 
+<!-- ========================= -->
+<!-- VIDEO BANNER NOTICIAS -->
+<!-- ========================= -->
+<div class="banner-noticias">
+    <video 
+        src="{% static 'noticias.mp4' %}"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata">
+    </video>
+</div>
+
+<!-- ========================= -->
+<!-- LOGO -->
+<!-- ========================= -->
 <div class="logo-container">
     <img src="{% static 'Logo.png' %}" class="logo" alt="Logo">
 </div>
 
+<!-- ========================= -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ========================= -->
 <div id="app">
 
     <div class="video-box glass">
@@ -46,7 +69,7 @@
             muted
             loop
             playsinline
-            preload="auto">
+            preload="metadata">
         </video>
 
     </div>
@@ -58,14 +81,11 @@
             camera-controls
             auto-rotate
             auto-rotate-delay="0"
-            rotation-per-second="8deg"
-
+            rotation-per-second="6deg"
             camera-orbit="auto auto 36m"
             min-camera-orbit="auto auto 35m"
             max-camera-orbit="auto auto 37m"
-
             field-of-view="28deg"
-
             exposure="1.05"
             shadow-intensity="0.8"
             environment-image="neutral"

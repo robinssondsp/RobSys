@@ -1,0 +1,251 @@
+/* ========================= */
+/* RESET */
+/* ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --scan-speed: 4s;
+    --accent-color: rgba(0,255,255,0.9);
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #003d7a 0%, #001f3f 40%, #000c1a 100%);
+}
+
+/* ========================= */
+/* BANNER SUPERIOR FIJO */
+/* ========================= */
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ========================= */
+/* VIDEO NOTICIAS */
+/* ========================= */
+.banner-noticias {
+    width: 100%;
+    height: 500px;
+    margin-top: 100px; /* espacio para banner fijo */
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-noticias video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+.logo-container {
+    position: fixed;
+    top: 50px;
+    left: 30px;
+    transform: translateY(-50%);
+    z-index: 200;
+}
+
+.logo {
+    height: 30px;
+}
+
+/* ========================= */
+/* CONTENIDO PRINCIPAL */
+/* ========================= */
+#app {
+    width: 95%;
+    max-width: 1200px;
+    margin: 80px auto 60px auto; /* ahora empieza debajo de noticias */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+/* ========================= */
+/* VIDEO RPA */
+/* ========================= */
+.video-box {
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+}
+
+.glass {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(10, 20, 40, 0.4);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================= */
+/* ESCÁNER VIDEO */
+/* ========================= */
+.rpa-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.scan-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--accent-color),
+        transparent
+    );
+    animation: scanMove var(--scan-speed) linear infinite;
+}
+
+@keyframes scanMove {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+.micro-data {
+    position: absolute;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(0,255,255,0.9);
+    text-shadow: 0 0 8px rgba(0,255,255,0.7);
+}
+
+.top-left {
+    top: 18px;
+    left: 20px;
+}
+
+.bottom-right {
+    bottom: 18px;
+    right: 20px;
+    text-align: right;
+}
+
+/* ========================= */
+/* ROBOT */
+/* ========================= */
+.robot-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(15,25,45,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot-box::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0,255,255,0.15) 40%,
+        rgba(0,255,255,0.45) 50%,
+        rgba(0,255,255,0.15) 60%,
+        transparent 100%
+    );
+    mix-blend-mode: screen;
+    filter: blur(6px);
+    animation: robotScan var(--scan-speed) linear infinite;
+    pointer-events: none;
+}
+
+@keyframes robotScan {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(200%); }
+}
+
+.robot-box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(0,255,255,0.35) 1px, transparent 1px);
+    background-size: 4px 4px;
+    opacity: 0.05;
+    animation: particlesMove 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes particlesMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(50px); }
+}
+
+model-viewer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+@media (max-width: 768px) {
+
+    .banner-noticias {
+        height: 280px; /* más pequeño en móvil */
+    }
+
+    #app {
+        margin-top: 40px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    #app {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .video-box,
+    .robot-box {
+        width: 48%;
+    }
+}
