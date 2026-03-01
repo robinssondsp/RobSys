@@ -16,35 +16,43 @@
 
 <body>
 
+<!-- ========================= -->
+<!-- BANNER -->
+<!-- ========================= -->
 <div class="banner" id="banner">
     <img src="{% static 'Banner.jpg' %}" alt="Banner">
 </div>
 
+<!-- ========================= -->
+<!-- LOGO -->
+<!-- ========================= -->
 <div class="logo-container">
     <img src="{% static 'Logo.png' %}" class="logo" alt="Logo">
 </div>
 
+<!-- ========================= -->
+<!-- CONTENIDO PRINCIPAL -->
+<!-- ========================= -->
 <div id="app">
 
+    <!-- ========================= -->
+    <!-- VIDEO + GLASS -->
+    <!-- ========================= -->
     <div class="video-box glass">
 
-        <!-- RPA SCAN OVERLAY -->
         <div class="rpa-overlay">
-
             <div class="scan-line"></div>
-
             <div class="data-node node1"></div>
             <div class="data-node node2"></div>
             <div class="data-node node3"></div>
 
             <div class="micro-data top-left">
-                SCANEANDO VENTAS...
+                ESCANEANDO VENTAS...
             </div>
 
             <div class="micro-data bottom-right">
-                ESTADO DE FACTURAS: VALIDANDO
+                VALIDANDO FACTURAS
             </div>
-
         </div>
 
         <video 
@@ -58,22 +66,23 @@
 
     </div>
 
+    <!-- ========================= -->
+    <!-- ROBOT 3D DEFAULT -->
+    <!-- ========================= -->
     <div class="robot-box">
         <model-viewer 
             src="{% static 'robot.glb' %}"
             camera-controls
             auto-rotate
-            exposure="1.1"
-            shadow-intensity="0.8"
-            environment-image="neutral"
-            bounds="tight"
-            field-of-view="28deg"
             alt="robot">
         </model-viewer>
     </div>
 
 </div>
 
+<!-- ========================= -->
+<!-- SCRIPT SCROLL -->
+<!-- ========================= -->
 <script>
 const banner = document.getElementById("banner");
 
