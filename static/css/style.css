@@ -7,6 +7,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --scan-speed: 3s;
+    --accent-color: rgba(0,255,255,0.8);
+}
+
 html, body {
     width: 100%;
     min-height: 100vh;
@@ -28,7 +33,6 @@ html, body {
     z-index: 10;
     backdrop-filter: blur(6px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.45);
-    transition: height 0.4s cubic-bezier(.22,.61,.36,1);
 }
 
 .banner img {
@@ -36,10 +40,6 @@ html, body {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.8);
-}
-
-.banner-small {
-    height: 60px;
 }
 
 /* ========================= */
@@ -55,11 +55,10 @@ html, body {
 
 .logo {
     height: 30px;
-    width: auto;
 }
 
 /* ========================= */
-/* CONTENIDO PRINCIPAL */
+/* CONTENIDO */
 /* ========================= */
 #app {
     width: 95%;
@@ -68,12 +67,18 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(40px, 6vh, 80px);
+    gap: 60px;
 }
 
 /* ========================= */
-/* GLASS PROFESIONAL */
+/* VIDEO GLASS */
 /* ========================= */
+.video-box {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
 .glass {
     position: relative;
     background: rgba(10, 20, 40, 0.4);
@@ -87,12 +92,49 @@ html, body {
     overflow: hidden;
 }
 
-/* ========================= */
-/* VIDEO */
-/* ========================= */
-.video-box {
+/* ESCÁNER */
+.rpa-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.scan-line {
+    position: absolute;
     width: 100%;
-    max-width: 500px;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--accent-color),
+        transparent
+    );
+    animation: scanMove var(--scan-speed) linear infinite;
+}
+
+@keyframes scanMove {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+.micro-data {
+    position: absolute;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(0,255,255,0.9);
+    text-shadow: 0 0 8px rgba(0,255,255,0.7);
+}
+
+.top-left {
+    top: 20px;
+    left: 25px;
+}
+
+.bottom-right {
+    bottom: 20px;
+    right: 25px;
+    text-align: right;
 }
 
 video {
@@ -103,57 +145,56 @@ video {
 }
 
 /* ========================= */
-/* ROBOT CONTENEDOR REDONDEADO */
+/* ROBOT */
 /* ========================= */
 .robot-box {
     position: relative;
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+    max-width: 420px;
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    border-radius: 28px;        /* 👈 redondeado elegante */
-    overflow: hidden;           /* 👈 recorta bordes duros */
+    border-radius: 28px;
+    overflow: hidden;
+
     background: rgba(15,25,45,0.5);
     box-shadow:
         0 25px 60px rgba(0,0,0,0.6),
         inset 0 0 40px rgba(0,180,255,0.05);
 }
 
-/* Model viewer redondeado */
+.robot-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    padding: 1px;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--accent-color),
+        transparent 40%
+    );
+    animation: borderScan var(--scan-speed) linear infinite;
+    pointer-events: none;
+
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+}
+
+@keyframes borderScan {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
 model-viewer {
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    z-index: 2;
-    border-radius: 28px;        /* 👈 mantiene coherencia */
-}
-
-/* ========================= */
-/* BASE TECNOLÓGICA */
-/* ========================= */
-.tech-base {
-    position: absolute;
-    bottom: 8%;
-    width: 60%;
-    height: 10%;
-    border-radius: 50%;
-    background: radial-gradient(
-        ellipse at center,
-        rgba(0,180,255,0.4) 0%,
-        rgba(0,180,255,0.15) 50%,
-        transparent 70%
-    );
-    filter: blur(12px);
-    animation: basePulse 3s ease-in-out infinite;
-    z-index: 1;
-}
-
-@keyframes basePulse {
-    0%,100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.08); }
+    height: 100%;
 }
 
 /* ========================= */
@@ -169,9 +210,5 @@ model-viewer {
     .video-box,
     .robot-box {
         width: 50%;
-    }
-
-    .robot-box {
-        max-width: 420px;
     }
 }

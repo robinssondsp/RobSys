@@ -26,13 +26,10 @@
 
 <div id="app">
 
-    <!-- VIDEO -->
     <div class="video-box glass">
+
         <div class="rpa-overlay">
             <div class="scan-line"></div>
-            <div class="data-node node1"></div>
-            <div class="data-node node2"></div>
-            <div class="data-node node3"></div>
 
             <div class="micro-data top-left">
                 ESCANEANDO VENTAS...
@@ -51,24 +48,31 @@
             playsinline
             preload="auto">
         </video>
+
     </div>
 
-    <!-- ROBOT -->
     <div class="robot-box">
-        <div class="tech-base"></div>
 
         <model-viewer 
             src="{% static 'robot.glb' %}"
             camera-controls
             auto-rotate
             auto-rotate-delay="0"
-            rotation-per-second="12deg"
+            rotation-per-second="8deg"
+
+            camera-orbit="auto auto 36m"
+            min-camera-orbit="auto auto 35m"
+            max-camera-orbit="auto auto 37m"
+
+            field-of-view="28deg"
+
             exposure="1.05"
             shadow-intensity="0.8"
             environment-image="neutral"
-            camera-orbit="0deg 75deg 3m"
+            interaction-prompt="none"
             alt="robot">
         </model-viewer>
+
     </div>
 
 </div>
